@@ -35,7 +35,7 @@ values."
      clojure
      java
      haskell
-     json
+     javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -142,7 +142,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("PragmataPro"
-                               :size 15
+                               :size 12
                                :width condensed
                                :powerline-scale 1.2)
    ;; The leader key
