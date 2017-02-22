@@ -5,6 +5,8 @@
                :defer t))
 
 
+;; ====
+
 (defun copy-sexp-at-point ()
   (interactive)
   (kill-new (thing-at-point 'sexp)))
@@ -49,6 +51,7 @@
 (global-set-key (kbd "C-?") 'mc/mark-next-lines)
 (global-set-key (kbd "C-M-?") 'mc/mark-all-in-region)
 
+
 ;; Smart Parens Navigation
 (global-set-key (kbd "C-M-u") 'sp-up-sexp)
 (global-set-key (kbd "M-u") 'sp-backward-up-sexp)
@@ -59,4 +62,9 @@
 (global-set-key (kbd "C-x C-M-j") 'sp-forward-barf-sexp)
 (global-set-key (kbd "C-M-y") 'sp-backward-slurp-sexp)
 (global-set-key (kbd "C-x C-M-y") 'sp-backward-barf-sexp)
+
+
+;; ====
+
+(setq ns-use-srgb-colorspace nil)
 
