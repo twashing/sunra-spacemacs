@@ -4,8 +4,9 @@
   (use-package free-keys
                :defer t))
 
+;; Color config 
+(setq ns-use-srgb-colorspace nil)
 
-;; ====
 
 (defun copy-sexp-at-point ()
   (interactive)
@@ -14,10 +15,6 @@
 (defun delete-whitespace-except-one ()
   (interactive)
   (just-one-space -1))
-
-;; (use-package dash)
-;; (use-package dash-functional)
-;; (use-package s)
 
 (global-set-key (kbd "C-x M-x") 'isearch-forward-symbol-at-point)
 (global-set-key (kbd "C-x C-g") 'grep-find)
@@ -64,7 +61,9 @@
 (global-set-key (kbd "C-x C-M-y") 'sp-backward-barf-sexp)
 
 
-;; ====
+;; Searching
+(define-key spacemacs-default-map-root-map (kbd "M-m s a /") 'helm-ag-project-root)
 
-(setq ns-use-srgb-colorspace nil)
+;; Hide / Show
+(global-set-key (kbd "C-o") 'hs-toggle-hiding)
 
