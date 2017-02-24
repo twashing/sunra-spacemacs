@@ -62,7 +62,7 @@
 
 
 ;; Searching
-(define-key spacemacs-default-map-root-map (kbd "M-m s a /") 'helm-ag-project-root)
+;; (define-key spacemacs-default-map-root-map (kbd "M-m s a /") 'helm-ag-project-root)
 
 ;; Hide / Show
 (global-set-key (kbd "C-o") 'hs-toggle-hiding)
