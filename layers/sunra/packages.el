@@ -59,6 +59,7 @@
 (global-set-key (kbd "C-x C-M-j") 'sp-forward-barf-sexp)
 (global-set-key (kbd "C-M-y") 'sp-backward-slurp-sexp)
 (global-set-key (kbd "C-x C-M-y") 'sp-backward-barf-sexp)
+(global-set-key (kbd "M-r") 'sp-raise-sexp)
 
 
 ;; Searching
@@ -66,4 +67,7 @@
 
 ;; Hide / Show
 (global-set-key (kbd "C-o") 'hs-toggle-hiding)
+
+
+(setq clojure-enable-fancify-symbols t)
 
