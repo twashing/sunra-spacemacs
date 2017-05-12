@@ -4,8 +4,8 @@
   (use-package free-keys
                :defer t))
 
-;; Color config 
-(setq ns-use-srgb-colorspace nil)
+;; Color config
+;; (setq ns-use-srgb-colorspace nil)
 
 
 (defun copy-sexp-at-point ()
@@ -52,13 +52,17 @@
 ;; Smart Parens Navigation
 (global-set-key (kbd "C-M-u") 'sp-up-sexp)
 (global-set-key (kbd "M-u") 'sp-backward-up-sexp)
+
 (global-set-key (kbd "C-M-d") 'sp-down-sexp)
 (global-set-key (kbd "M-d") 'sp-backward-down-sexp)
-(global-set-key (kbd "C-M-n") 'sp-next-sexp)
+
 (global-set-key (kbd "C-M-j") 'sp-forward-slurp-sexp)
 (global-set-key (kbd "C-x C-M-j") 'sp-forward-barf-sexp)
+
 (global-set-key (kbd "C-M-y") 'sp-backward-slurp-sexp)
 (global-set-key (kbd "C-x C-M-y") 'sp-backward-barf-sexp)
+
+(global-set-key (kbd "C-M-n") 'sp-next-sexp)
 (global-set-key (kbd "M-r") 'sp-raise-sexp)
 
 
@@ -71,3 +75,5 @@
 
 (setq clojure-enable-fancify-symbols t)
 
+;; enable the meta - ALWAYS!!
+(setq mac-option-modifier 'meta)
