@@ -5,7 +5,7 @@
                :defer t))
 
 ;; Color config
-;; (setq ns-use-srgb-colorspace nil)
+(setq ns-use-srgb-colorspace nil)
 
 
 (defun copy-sexp-at-point ()
@@ -77,3 +77,29 @@
 
 ;; enable the meta - ALWAYS!!
 (setq mac-option-modifier 'meta)
+
+
+(add-to-list 'auto-mode-alist '("\\.tf\\'" . hcl-mode))
+(add-to-list 'auto-mode-alist '("\\.tfvars\\'" . hcl-mode))
+
+
+(defun elephant-cider-connect ()
+  (interactive)
+  (cider-connect "localhost" 5554 "/Users/timothyw/Projects/wadeandwendy/elephant"))
+
+(global-set-key (kbd "C-c C-a C-c") 'elephant-cider-connect)
+
+(global-set-key (kbd "C-c g c") 'avy-goto-char-2)
+(global-set-key (kbd "C-c g C") 'avy-goto-char)
+(global-set-key (kbd "C-c g l") 'avy-goto-line)
+(global-set-key (kbd "C-c g L") 'avy-goto-char-in-line)
+
+;; jump to beginning of some word
+(global-set-key (kbd "C-c g w") 'avy-goto-word-1)
+(global-set-key (kbd "C-c g W") 'avy-goto-word-0)
+
+;; jump to subword starting with a char
+(global-set-key (kbd "C-c g s") 'avy-goto-subword-1)
+
+;; jump to some subword
+(global-set-key (kbd "C-c g S") 'avy-goto-subword-0)
