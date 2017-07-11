@@ -108,3 +108,15 @@
 (global-set-key (kbd "M-m x t s") 'transpose-sexps)
 
 
+(defun copy-line (&optional arg)
+  "Do a kill-line but copy rather than kill.  This function directly calls
+    kill-line, so see documentation of kill-line for how to use it including prefix
+    argument and relevant variables.  This function works by temporarily making the
+    buffer read-only."
+  (interactive "P")
+  (let ((buffer-read-only t)
+        (kill-read-only-ok t))
+    (kill-line arg)))
+
+(global-set-key (kbd "C-c k") 'copy-line)
+
