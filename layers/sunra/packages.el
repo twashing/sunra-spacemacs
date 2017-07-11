@@ -103,3 +103,8 @@
 
 ;; jump to some subword
 (global-set-key (kbd "C-c g S") 'avy-goto-subword-0)
+
+
+(global-set-key (kbd "M-m x t s") 'transpose-sexps)
+
+
