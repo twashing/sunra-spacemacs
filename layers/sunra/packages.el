@@ -105,9 +105,11 @@
 (global-set-key (kbd "C-c g S") 'avy-goto-subword-0)
 
 
+;; Transpose
 (global-set-key (kbd "M-m x t s") 'transpose-sexps)
 
 
+;; Copy line
 (defun copy-line (&optional arg)
   "Do a kill-line but copy rather than kill.  This function directly calls
     kill-line, so see documentation of kill-line for how to use it including prefix
@@ -119,4 +121,9 @@
     (kill-line arg)))
 
 (global-set-key (kbd "C-c k") 'copy-line)
+
+
+;; Multiple cursors
+(global-set-key (kbd "C-c m l") 'mc/mark-next-lines)
+
 
