@@ -106,7 +106,7 @@
 
 
 ;; Transpose
-(global-set-key (kbd "M-m x t s") 'transpose-sexps)
+;; (global-set-key (kbd "M-m x t s") 'transpose-sexps)
 
 
 ;; Copy line
@@ -125,5 +125,4 @@
 
 ;; Multiple cursors
 (global-set-key (kbd "C-c m l") 'mc/mark-next-lines)
-
 
