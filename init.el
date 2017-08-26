@@ -143,9 +143,6 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   ;; dotspacemacs-themes '(spacemacs-dark
-   ;;                       spacemacs-light
-   ;;                       firebelly)
    dotspacemacs-themes '(firebelly)
 
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -318,9 +315,12 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
   (setq powerline-default-separator 'wave)
   ;; (setq powerline-default-separator 'utf-8)
-  )
+
+  ;; Transpose
+  (global-set-key (kbd "M-m x t s") 'transpose-sexps))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -357,6 +357,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cider-boot-parameters "dev")
+ '(custom-safe-themes
+   (quote
+    ("12dd37432bb454355047c967db886769a6c60e638839405dad603176e2da366b" default)))
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
@@ -373,5 +376,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0))))
  '(spacemacs-emacs-face ((t (:background "DarkGoldenrod2" :foreground "#222226" :inherit (quote mode-line))))))
 )
