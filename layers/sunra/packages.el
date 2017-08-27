@@ -133,3 +133,34 @@
    ((t (:inherit ace-jump-face-foreground :height 3.0)))))
 
 (setq aw-background nil)
+
+;; Ansi-term
+
+(defun terminal ()
+  "Switch to terminal. Launch if nonexistent."
+  (interactive)
+  (if (get-buffer "*ansi-term*")
+      (switch-to-buffer "*ansi-term*")
+    (ansi-term "/bin/bash"))
+  (get-buffer-process "*ansi-term*"))
+
+(global-set-key (kbd "C-t") 'terminal)
+
+;; use bash
+(setq explicit-shell-file-name "/bin/bash")
+
+;; kill buffer after exit
+(defun oleh-term-exec-hook ()
+  (let* ((buff (current-buffer))
+         (proc (get-buffer-process buff)))
+    (set-process-sentinel
+     proc
+     `(lambda (process event)
+        (if (string= event "finished\n")
+            (kill-buffer ,buff))))))
+
+(add-hook 'term-exec-hook 'oleh-term-exec-hook)
+
+;; Nicer paste
+(eval-after-load "term"
+  '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
