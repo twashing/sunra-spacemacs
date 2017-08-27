@@ -30,9 +30,7 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     themes-megapack 
-     python
+   '(python
      csv
      racket
      html
@@ -150,7 +148,8 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("PragmataPro"
-                               :size 12
+                               :size 14
+
                                :width condensed
                                :powerline-scale 1.2)
    ;; The leader key
@@ -319,8 +318,11 @@ you should place your code here."
   (setq powerline-default-separator 'wave)
   ;; (setq powerline-default-separator 'utf-8)
 
-  ;; Transpose
-  (global-set-key (kbd "M-m x t s") 'transpose-sexps))
+  (global-set-key (kbd "M-m x t s") 'transpose-sexps)
+  (global-set-key (kbd "M-<backspace>") ' sp-backward-kill-word)
+  (spacemacs/toggle-highlight-current-line-globally-off))
+
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

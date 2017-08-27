@@ -134,7 +134,7 @@
 
 (setq aw-background nil)
 
-;; Ansi-term
+;; Ansi-term - stolen from here: http://oremacs.com/2015/01/01/three-ansi-term-tips/
 
 (defun terminal ()
   "Switch to terminal. Launch if nonexistent."
@@ -164,3 +164,8 @@
 ;; Nicer paste
 (eval-after-load "term"
   '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
+
+
+;; 'sp-raise-sexp
+;; backward-kill-word
+;; sp-backward-kill-word
