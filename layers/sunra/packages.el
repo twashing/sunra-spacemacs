@@ -83,12 +83,6 @@
 (add-to-list 'auto-mode-alist '("\\.tfvars\\'" . hcl-mode))
 
 
-(defun elephant-cider-connect ()
-  (interactive)
-  (cider-connect "localhost" 5554 "/Users/timothyw/Projects/wadeandwendy/elephant"))
-
-(global-set-key (kbd "C-c C-a C-c") 'elephant-cider-connect)
-
 (global-set-key (kbd "C-c g c") 'avy-goto-char-2)
 (global-set-key (kbd "C-c g C") 'avy-goto-char)
 (global-set-key (kbd "C-c g l") 'avy-goto-line)
