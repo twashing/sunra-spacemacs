@@ -159,6 +159,13 @@
 (eval-after-load "term"
   '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
 
+(custom-set-faces
+ '(aw-leading-char-face
+   ((t (:foreground "Rosybrown4" :weight normal :inverse-video nil :height 5.0)))))
+
+;; DarkOrange3 - as a backup color
+
+
 
 ;; 'sp-raise-sexp
 ;; backward-kill-word

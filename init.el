@@ -348,12 +348,7 @@ you should place your code here."
      (checkdoc-minor-mode . t)
      (mangle-whitespace . t))))
  '(spacemacs-theme-comment-bg nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
@@ -374,11 +369,4 @@ This function is called at the very end of Spacemacs initialization."
      (cider-boot-parameters . "start")
      (checkdoc-minor-mode . t)
      (mangle-whitespace . t))))
- '(spacemacs-theme-comment-bg nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
-)
+ '(spacemacs-theme-comment-bg nil)))
