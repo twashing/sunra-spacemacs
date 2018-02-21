@@ -118,7 +118,19 @@
 
 
 ;; Multiple cursors
-(global-set-key (kbd "C-c m l") 'mc/mark-next-lines)
+;; (global-set-key (kbd "C-c m l") 'mc/mark-next-lines)
+
+(global-set-key (kbd "C-c m n l") 'mc/mark-next-lines)
+(global-set-key (kbd "C-c m p l") 'mc/mark-previous-lines)
+;; (global-set-key (kbd "C-x C-c m n l") 'mc/unmark-next-like-this)
+;; (global-set-key (kbd "C-x C-c m p l") 'mc/unmark-previous-like-this)
+(global-set-key (kbd "C-c m a t") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c m a w") 'mc/mark-all-words-like-this)
+(global-set-key (kbd "C-c m a s") 'mc/mark-all-symbols-like-this)
+(global-set-key (kbd "C-c m a r") 'mc/mark-all-in-region)
+(global-set-key (kbd "C-c m a x") 'mc/mark-all-in-region-regexp)
+(global-set-key (kbd "C-c m a d") 'mc/mark-all-like-this-dwim)
+(global-set-key (kbd "C-c m a D") 'mc/mark-all-dwim)
 
 
 ;; Ace window customizations
@@ -128,8 +140,8 @@
 
 (setq aw-background nil)
 
-;; Ansi-term - stolen from here: http://oremacs.com/2015/01/01/three-ansi-term-tips/
 
+;; Ansi-term - stolen from here: http://oremacs.com/2015/01/01/three-ansi-term-tips/
 (defun terminal ()
   "Switch to terminal. Launch if nonexistent."
   (interactive)
