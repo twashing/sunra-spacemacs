@@ -40,8 +40,7 @@ values."
      java
      javascript
      auto-completion
-     ;; (haskell :variables haskell-completion-backend 'intero)
-     haskell
+     (haskell :variables haskell-completion-backend 'intero)
 
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
