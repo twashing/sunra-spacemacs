@@ -317,8 +317,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  
-  (setq powerline-default-separator 'wave)
+  (setq powerline-default-separator nil)
   ;; (setq powerline-default-separator 'utf-8)
 
   (global-set-key (kbd "M-m x t s") 'transpose-sexps)
@@ -350,7 +349,7 @@ you should place your code here."
      (cider-boot-parameters . "start")
      (checkdoc-minor-mode . t)
      (mangle-whitespace . t))))
- '(spacemacs-theme-comment-bg nil))
+ '(spacemacs-theme-comment-bg nil t))
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
@@ -378,4 +377,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+ '(default ((t (:background "#222222" :foreground "#999999"))))
+ '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0))))
+ '(spacemacs-emacs-face ((t (:background "DarkGoldenrod2" :foreground "#3E3D31" :inherit (quote mode-line))))))
