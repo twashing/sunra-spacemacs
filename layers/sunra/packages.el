@@ -121,6 +121,18 @@
 ;; (global-set-key (kbd "C-c m l") 'mc/mark-next-lines)
 
 (global-set-key (kbd "C-c m n l") 'mc/mark-next-lines)
+(global-set-key (kbd "C-c m n t") 'mc/mark-next-like-this)
+
+(global-set-key (kbd "C-c m n w") 'mc/mark-next-like-this-word)
+(global-set-key (kbd "C-c m n W") 'mc/mark-next-word-like-this)
+
+(global-set-key (kbd "C-c m n s") 'mc/mark-next-like-this-symbol)
+(global-set-key (kbd "C-c m n S") 'mc/mark-next-symbol-like-this)
+
+(global-set-key (kbd "C-c s n") 'mc/skip-to-next-like-this)
+(global-set-key (kbd "C-c s p") 'mc/skip-to-previous-like-this)
+(global-set-key (kbd "C-c m i n") 'mc/insert-numbers)
+
 (global-set-key (kbd "C-c m p l") 'mc/mark-previous-lines)
 ;; (global-set-key (kbd "C-x C-c m n l") 'mc/unmark-next-like-this)
 ;; (global-set-key (kbd "C-x C-c m p l") 'mc/unmark-previous-like-this)
