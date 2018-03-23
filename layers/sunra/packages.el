@@ -162,7 +162,12 @@
     (ansi-term "/bin/bash"))
   (get-buffer-process "*ansi-term*"))
 
+
+
 (global-set-key (kbd "C-t") 'terminal)
+
+(global-set-key (kbd "C-c M-c") 'upcase-word)
+
 
 ;; use bash
 (setq explicit-shell-file-name "/bin/bash")
@@ -189,7 +194,7 @@
 
 ;; DarkOrange3 - as a backup color
 
-
+(setq cider-test-show-report-on-success nil)
 
 ;; 'sp-raise-sexp
 ;; backward-kill-word
