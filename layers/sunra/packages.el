@@ -1,7 +1,33 @@
-(setq sunra-packages '(free-keys))
+(defconst sunra-packages
+  '(free-keys
+    visual-regexp
+    visual-regexp-steroids
+    back-button
+    smartrep
+    visible-mark))
 
 (defun sunra/init-free-keys ()
   (use-package free-keys
+               :defer t))
+
+(defun sunra/init-visual-regexp ()
+  (use-package visual-regexp
+               :defer t))
+
+(defun sunra/init-visual-regexp-steroids ()
+  (use-package visual-regexp-steroids
+               :defer t))
+
+(defun sunra/init-back-button ()
+  (use-package back-button
+               :defer t))
+
+(defun sunra/init-smartrep ()
+  (use-package smartrep
+               :defer t))
+
+(defun sunra/init-visible-mark ()
+  (use-package visible-mark
                :defer t))
 
 ;; Color config
@@ -38,7 +64,8 @@
 (global-set-key (kbd "C-c M-[") 'ace-swap-window)
 (global-set-key (kbd "C-x M-[") 'ace-delete-window)
 (global-set-key (kbd "M-y") 'browse-kill-ring)
-(global-set-key (kbd "C-M-SPC") 'delete-whitespace-except-one)
+;; (global-set-key (kbd "C-M-SPC") 'delete-whitespace-except-one)
+(global-set-key (kbd "C-M-g") 'delete-whitespace-except-one)
 (global-set-key (kbd "C-M-[") 'scroll-other-window-down)
 (global-set-key (kbd "C-M-]") 'scroll-other-window)
 (global-set-key (kbd "C-M-s") 'sp-splice-sexp)
@@ -149,6 +176,10 @@
 (global-set-key (kbd "C-c m a x") 'mc/mark-all-in-region-regexp)
 (global-set-key (kbd "C-c m a d") 'mc/mark-all-like-this-dwim)
 (global-set-key (kbd "C-c m a D") 'mc/mark-all-dwim)
+
+(global-set-key (kbd "C-c m e l") 'mc/edit-lines)
+(global-set-key (kbd "C-c m e b") 'mc/edit-beginnings-of-lines)
+(global-set-key (kbd "C-c m e e") 'mc/edit-ends-of-lines)
 
 
 ;; Ace window customizations
