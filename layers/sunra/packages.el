@@ -22,6 +22,8 @@
 (global-set-key (kbd "C-x M-o") 'crux-smart-open-line-above)
 (global-set-key (kbd "C-x C-o") 'crux-smart-open-line)
 (global-set-key (kbd "C-'") 'crux-kill-whole-line)
+;; (global-set-key (kbd "M-m x w u") 'upcase-word)
+(global-set-key (kbd "M-W") 'whitespace-cleanup)
 
 
 ;; Navigation
@@ -74,6 +76,10 @@
 
 
 (setq clojure-enable-fancify-symbols t)
+
+;; :always-align | :always-indent | :align-arguments
+(setq clojure-indent-style :align-arguments)
+;; (setq clojure-indent-style :always-indent)
 
 ;; enable the meta - ALWAYS!!
 (setq mac-option-modifier 'meta)
