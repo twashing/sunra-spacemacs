@@ -32,7 +32,7 @@
 
 ;; Color config
 (setq ns-use-srgb-colorspace nil)
-
+;; (setq transient-mark-mode t)
 
 (defun copy-sexp-at-point ()
   (interactive)
@@ -64,8 +64,9 @@
 (global-set-key (kbd "C-c M-[") 'ace-swap-window)
 (global-set-key (kbd "C-x M-[") 'ace-delete-window)
 (global-set-key (kbd "M-y") 'browse-kill-ring)
-;; (global-set-key (kbd "C-M-SPC") 'delete-whitespace-except-one)
-(global-set-key (kbd "C-M-g") 'delete-whitespace-except-one)
+;; (global-set-key (kbd "C-SPC") nil)
+;; (global-set-key (kbd "M-SPC") nil)
+(global-set-key (kbd "C-M-SPC") 'delete-whitespace-except-one)
 (global-set-key (kbd "C-M-[") 'scroll-other-window-down)
 (global-set-key (kbd "C-M-]") 'scroll-other-window)
 (global-set-key (kbd "C-M-s") 'sp-splice-sexp)
@@ -73,9 +74,6 @@
 (global-set-key (kbd "C-`") 'crux-kill-other-buffers)
 (global-set-key (kbd "C-<") 'crux-rename-buffer-and-file)
 (global-set-key (kbd "C->") 'crux-delete-buffer-and-file)
-
-(global-set-key (kbd "C-?") 'mc/mark-next-lines)
-(global-set-key (kbd "C-M-?") 'mc/mark-all-in-region)
 
 
 ;; Smart Parens Navigation
@@ -109,6 +107,8 @@
 ;; (setq clojure-indent-style :always-indent)
 
 ;; enable the meta - ALWAYS!!
+(setq mac-command-modifier 'meta)
+;; (setq mac-option-modifier 'super)
 (setq mac-option-modifier 'meta)
 
 
@@ -152,6 +152,9 @@
 
 ;; Multiple cursors
 ;; (global-set-key (kbd "C-c m l") 'mc/mark-next-lines)
+;; (global-set-key (kbd "C-?") 'mc/mark-next-lines)
+;; (global-set-key (kbd "C-M-?") 'mc/mark-all-in-region)
+
 
 (global-set-key (kbd "C-c m n l") 'mc/mark-next-lines)
 (global-set-key (kbd "C-c m n t") 'mc/mark-next-like-this)
