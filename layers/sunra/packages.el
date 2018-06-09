@@ -4,7 +4,10 @@
     visual-regexp-steroids
     back-button
     smartrep
-    visible-mark))
+    visible-mark
+    ;; command-log-mode
+    ;; use-package
+    ))
 
 (defun sunra/init-free-keys ()
   (use-package free-keys
@@ -28,7 +31,19 @@
 
 (defun sunra/init-visible-mark ()
   (use-package visible-mark
-               :defer t))
+    :defer t))
+
+;; (defun sunra/init-command-log-mode ()
+;;   (use-package command-log-mode
+;;     :defer t))
+
+;; (defun sunra/init-use-package ()
+;;   (use-package use-package
+;;     :defer t))
+
+;; -> For `bind-key` function
+;; https://github.com/jwiegley/use-package/blob/master/bind-key.el
+
 
 ;; Color config
 (setq ns-use-srgb-colorspace nil)
@@ -116,6 +131,7 @@
 (add-to-list 'auto-mode-alist '("\\.tfvars\\'" . hcl-mode))
 
 
+(global-set-key (kbd "C-/") 'avy-goto-char-2)
 (global-set-key (kbd "C-c g c") 'avy-goto-char-2)
 (global-set-key (kbd "C-c g C") 'avy-goto-char)
 (global-set-key (kbd "C-c g l") 'avy-goto-line)
@@ -185,6 +201,9 @@
 (global-set-key (kbd "C-c m e e") 'mc/edit-ends-of-lines)
 
 
+(global-set-key (kbd "C-c C-k") 'eval-buffer)
+
+
 ;; Ace window customizations
 (custom-set-faces
  '(aw-leading-char-face
@@ -202,10 +221,7 @@
     (ansi-term "/bin/bash"))
   (get-buffer-process "*ansi-term*"))
 
-
-
 (global-set-key (kbd "C-t") 'terminal)
-
 (global-set-key (kbd "C-c M-c") 'upcase-word)
 
 
