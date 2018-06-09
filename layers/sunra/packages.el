@@ -67,6 +67,9 @@
 (global-set-key (kbd "M-W") 'whitespace-cleanup)
 
 
+(global-set-key (kbd "C-\\") 'helm-global-mark-ring)
+
+
 ;; Navigation
 (fset 'buf-move-up "\C-u10\C-p")
 (fset 'buf-move-down "\C-u10\C-n")
