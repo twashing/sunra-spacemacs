@@ -5,6 +5,8 @@
     back-button
     smartrep
     visible-mark
+    smartrep
+    back-button
     ;; command-log-mode
     ;; use-package
     ))
