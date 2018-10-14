@@ -124,7 +124,11 @@
 
 ;; :always-align | :always-indent | :align-arguments
 (setq clojure-indent-style :align-arguments)
-;; (setq clojure-indent-style :always-indent)
+
+
+(defun cider-repl-bindings ()
+  (define-key cider-repl-mode-map (kbd "M-r") #'sp-raise-sexp))
+(add-hook 'cider-repl-mode-hook 'cider-repl-bindings)
 
 ;; enable the meta - ALWAYS!!
 (setq mac-command-modifier 'meta)
@@ -136,7 +140,9 @@
 (add-to-list 'auto-mode-alist '("\\.tfvars\\'" . hcl-mode))
 
 
+(define-key undo-tree-map (kbd "C-/") nil)
 (global-set-key (kbd "C-/") 'avy-goto-char-2)
+
 (global-set-key (kbd "C-c g c") 'avy-goto-char-2)
 (global-set-key (kbd "C-c g C") 'avy-goto-char)
 (global-set-key (kbd "C-c g l") 'avy-goto-line)
