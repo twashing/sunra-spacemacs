@@ -7,6 +7,7 @@
     visible-mark
     smartrep
     back-button
+    sayid
     ;; command-log-mode
     ;; use-package
     ))
@@ -33,7 +34,11 @@
 
 (defun sunra/init-visible-mark ()
   (use-package visible-mark
-    :defer t))
+               :defer t))
+
+(defun sunra/sayid ()
+  (use-package sayid
+               :defer t))
 
 ;; (defun sunra/init-command-log-mode ()
 ;;   (use-package command-log-mode
@@ -120,15 +125,26 @@
 (global-set-key (kbd "C-o") 'hs-toggle-hiding)
 
 
+;; CLOJURE
 (setq clojure-enable-fancify-symbols t)
 
 ;; :always-align | :always-indent | :align-arguments
 (setq clojure-indent-style :align-arguments)
 
+(setq cider-repl-use-pretty-printing t)
+(setq cider-prompt-for-symbol nil)
+(setq nrepl-log-messages t)
+(setq cider-save-file-on-load t)
+(setq cider-special-mode-truncate-lines nil)
+(setq cider-overlays-use-font-lock t)
 
 (defun cider-repl-bindings ()
   (define-key cider-repl-mode-map (kbd "M-r") #'sp-raise-sexp))
 (add-hook 'cider-repl-mode-hook 'cider-repl-bindings)
+
+;; (eval-after-load 'clojure-mode
+;;   '(sayid-setup-package))
+
 
 ;; enable the meta - ALWAYS!!
 (setq mac-command-modifier 'meta)
@@ -140,9 +156,13 @@
 (add-to-list 'auto-mode-alist '("\\.tfvars\\'" . hcl-mode))
 
 
-(define-key undo-tree-map (kbd "C-/") nil)
-(global-set-key (kbd "C-/") 'avy-goto-char-2)
 
+(defun unset-undo-tree-bindings ()
+  (define-key undo-tree-map (kbd "C-/") nil)
+  (global-set-key (kbd "C-/") 'avy-goto-char-2))
+(add-hook 'undo-tree-mode-hook 'unset-undo-tree-bindings)
+
+(global-set-key (kbd "C-/") 'avy-goto-char-2)
 (global-set-key (kbd "C-c g c") 'avy-goto-char-2)
 (global-set-key (kbd "C-c g C") 'avy-goto-char)
 (global-set-key (kbd "C-c g l") 'avy-goto-line)
