@@ -118,6 +118,10 @@
 (global-set-key (kbd "M-r") 'sp-raise-sexp)
 
 
+;; Projectile
+(global-set-key (kbd "M-m p S") 'projectile-save-project-buffers)
+
+
 ;; Searching
 ;; (define-key spacemacs-default-map-root-map (kbd "M-m s a /") 'helm-ag-project-root)
 
@@ -130,7 +134,6 @@
 
 ;; :always-align | :always-indent | :align-arguments
 (setq clojure-indent-style :align-arguments)
-
 (setq cider-repl-use-pretty-printing t)
 (setq cider-prompt-for-symbol nil)
 (setq nrepl-log-messages t)
