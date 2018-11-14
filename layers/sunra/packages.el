@@ -8,8 +8,8 @@
     smartrep
     back-button
     sayid
+    ;; hydra
     ;; command-log-mode
-    ;; use-package
     ))
 
 (defun sunra/init-free-keys ()
@@ -36,17 +36,11 @@
   (use-package visible-mark
                :defer t))
 
-(defun sunra/sayid ()
+(defun sunra/init-sayid ()
   (use-package sayid
                :defer t))
 
-;; (defun sunra/init-command-log-mode ()
-;;   (use-package command-log-mode
-;;     :defer t))
 
-;; (defun sunra/init-use-package ()
-;;   (use-package use-package
-;;     :defer t))
 
 ;; -> For `bind-key` function
 ;; https://github.com/jwiegley/use-package/blob/master/bind-key.el
@@ -118,8 +112,9 @@
 (global-set-key (kbd "M-r") 'sp-raise-sexp)
 
 
+
 ;; Projectile
-(global-set-key (kbd "M-m p S") 'projectile-save-project-buffers)
+;; (global-set-key (kbd "M-m p S") 'projectile-save-project-buffers)
 
 
 ;; Searching

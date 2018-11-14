@@ -331,7 +331,26 @@ you should place your code here."
   (spacemacs/toggle-highlight-current-line-globally-off)
 
   (setq-default js2-basic-offset 2)
-  (setq-default js-indent-level 2))
+  (setq-default js-indent-level 2)
+
+  (defhydra hydra-multiple-cursors-next (global-map "C-c m n")
+    "mark next"
+    ("l" mc/mark-next-lines "lines")
+    ("t" mc/mark-next-like-this "next")
+    ("w" mc/mark-next-like-this-word "word")
+    ("s" mc/mark-next-like-this-symbol "symbol")
+    ("W" mc/mark-next-word-like-this "whole word")
+    ("S" mc/mark-next-symbol-like-this "whole symbol"))
+
+  (defhydra hydra-multiple-cursors-previous (global-map "C-c m p")
+    "mark previous"
+    ("l" mc/mark-previous-lines "lines")
+    ("t" mc/mark-previous-like-this "previous")
+    ("w" mc/mark-previous-like-this-word "word")
+    ("s" mc/mark-previous-like-this-symbol "symbol")
+    ("W" mc/mark-previous-word-like-this "whole word")
+    ("S" mc/mark-previous-symbol-like-this "whole symbol"))
+  )
 
 
 
