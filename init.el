@@ -333,24 +333,243 @@ you should place your code here."
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
 
+
+  ;; Projectile
+  (global-set-key (kbd "M-m p S") 'projectile-save-project-buffers)
+
+
+  ;; Searching
+  (define-key spacemacs-default-map-root-map (kbd "M-m s a /") 'helm-ag-project-root)
+
+
+  ;; Navigation
+  (fset 'buf-move-up "\C-u10\C-p")
+  (fset 'buf-move-down "\C-u10\C-n")
+
+  (global-set-key (kbd "M-U") 'buf-move-up)
+  (global-set-key (kbd "M-D") 'buf-move-down)
+  (global-set-key (kbd "C-d") 'sp-kill-sexp)
+  (global-set-key (kbd "C-M-k") 'copy-sexp-at-point)
+  (global-set-key (kbd "M-[") 'ace-select-window)
+  (global-set-key (kbd "C-c M-[") 'ace-swap-window)
+  (global-set-key (kbd "C-x M-[") 'ace-delete-window)
+  (global-set-key (kbd "M-y") 'browse-kill-ring)
+  (global-set-key (kbd "C-M-SPC") 'delete-whitespace-except-one)
+  (global-set-key (kbd "C-M-[") 'scroll-other-window-down)
+  (global-set-key (kbd "C-M-]") 'scroll-other-window)
+  (global-set-key (kbd "C-M-s") 'sp-splice-sexp)
+
+  (global-set-key (kbd "C-`") 'crux-kill-other-buffers)
+  (global-set-key (kbd "C-<") 'crux-rename-buffer-and-file)
+  (global-set-key (kbd "C->") 'crux-delete-buffer-and-file)
+
+
+  ;; Smart Parens Navigation
+  (global-set-key (kbd "C-M-u") 'sp-up-sexp)
+  (global-set-key (kbd "M-u") 'sp-backward-up-sexp)
+
+  (global-set-key (kbd "C-M-d") 'sp-down-sexp)
+  (global-set-key (kbd "M-d") 'sp-backward-down-sexp)
+
+  (global-set-key (kbd "C-M-j") 'sp-forward-slurp-sexp)
+  (global-set-key (kbd "C-x C-M-j") 'sp-forward-barf-sexp)
+
+  (global-set-key (kbd "C-M-y") 'sp-backward-slurp-sexp)
+  (global-set-key (kbd "C-x C-M-y") 'sp-backward-barf-sexp)
+
+  (global-set-key (kbd "C-M-n") 'sp-next-sexp)
+  (global-set-key (kbd "M-r") 'sp-raise-sexp)
+
+
+
+  ;; Hide / Show
+  (global-set-key (kbd "C-o") 'hs-toggle-hiding)
+
+
+  (defhydra smart-parens-navigation (global-map "C-M-.")
+    "
+     Smartparens"
+    ("u" sp-backward-up-sexp)
+    ("U" sp-up-sexp)
+    ("d" sp-down-sexp)
+    ("D" sp-backward-down-sexp)
+    ("j" sp-forward-slurp-sexp)
+    ("J" sp-forward-barf-sexp)
+    ("y" sp-backward-slurp-sexp)
+    ("Y" sp-backward-barf-sexp)
+    ("n" sp-next-sexp)
+    ("p" sp-previous-sexp)
+    ("f" forward-sexp)
+    ("b" backward-sexp)
+    ("r" sp-raise-sexp)
+    ("s" sp-splice-sexp)
+
+    ("q" nil "quit" :color blue))
+
   (defhydra hydra-multiple-cursors-next (global-map "C-c m n")
-    "mark next"
+    "
+     Mark next"
     ("l" mc/mark-next-lines "lines")
     ("t" mc/mark-next-like-this "next")
     ("w" mc/mark-next-like-this-word "word")
     ("s" mc/mark-next-like-this-symbol "symbol")
     ("W" mc/mark-next-word-like-this "whole word")
-    ("S" mc/mark-next-symbol-like-this "whole symbol"))
+    ("S" mc/mark-next-symbol-like-this "whole symbol")
+
+    ("q" nil "quit" :color blue))
 
   (defhydra hydra-multiple-cursors-previous (global-map "C-c m p")
-    "mark previous"
+    "
+     Mark previous"
     ("l" mc/mark-previous-lines "lines")
     ("t" mc/mark-previous-like-this "previous")
     ("w" mc/mark-previous-like-this-word "word")
     ("s" mc/mark-previous-like-this-symbol "symbol")
     ("W" mc/mark-previous-word-like-this "whole word")
-    ("S" mc/mark-previous-symbol-like-this "whole symbol"))
-  )
+    ("S" mc/mark-previous-symbol-like-this "whole symbol")
+
+    ("q" nil "quit" :color blue))
+
+  (defhydra hydra-cljr-code (:color pink :hint nil)
+    "
+    Ns related refactorings
+    --------------------------------------------------------------------------------------------------------------------------------------
+    _ai_: Add import to ns                             _am_: Add missing libspec                          _ap_: Add project dependency
+    _ar_: Add require to ns                            _au_: Add use to ns                                _cn_: Clean ns
+    _rm_: Require a macro into the ns                  _sr_: Stop referring
+
+     Code related refactorings
+    --------------------------------------------------------------------------------------------------------------------------------------
+    _ci_: Cycle if                                     _ct_: Cycle thread
+    _dk_: Destructure keys                             _el_: Expand let                                   _fu_: Find usages
+    _il_: Introduce let                                _is_: Inline symbol                                _ml_: Move to let
+    _pf_: Promote function                             _rl_: Remove let                                   _rs_: Rename symbol
+    _tf_: Thread first all                             _th_: Thread                                       _tl_: Thread last all
+    _ua_: Unwind all                                   _uw_: Unwind
+
+     Toplevel form related refactorings
+    --------------------------------------------------------------------------------------------------------------------------------------
+    _as_: Add stubs for the interface/protocol at point_cp_: Cycle privacy                                _cs_: Change function signature
+    _ec_: Extract constant                             _ed_: Extract form as def                          _ef_: Extract function
+    _fe_: Create function from example                 _is_: Inline symbol                                _mf_: Move form
+    _pf_: Promote function                             _rf_: Rename file-or-dir                           _ad_: Add declaration"
+
+    ("ai" cljr-add-import-to-ns) ("am" cljr-add-missing-libspec)
+    ("ap" cljr-add-project-dependency) ("ar" cljr-add-require-to-ns)
+    ("au" cljr-add-use-to-ns) ("cn" cljr-clean-ns)
+    ("rm" cljr-require-macro) ("sr" cljr-stop-referring)
+
+    ("ci" clojure-cycle-if) ("ct" cljr-cycle-thread)
+    ("dk" cljr-destructure-keys) ("el" cljr-expand-let)
+    ("fu" cljr-find-usages) ("il" cljr-introduce-let)
+    ("is" cljr-inline-symbol) ("ml" cljr-move-to-let)
+    ("pf" cljr-promote-function) ("rl" cljr-remove-let)
+    ("rs" cljr-rename-symbol) ("tf" clojure-thread-first-all)
+    ("th" clojure-thread) ("tl" clojure-thread-last-all)
+    ("ua" clojure-unwind-all) ("uw" clojure-unwind)
+
+    ("as" cljr-add-stubs) ("cp" clojure-cycle-privacy)
+    ("cs" cljr-change-function-signature) ("ec" cljr-extract-constant)
+    ("ed" cljr-extract-def) ("ef" cljr-extract-function)
+    ("fe" cljr-create-fn-from-example) ("is" cljr-inline-symbol)
+    ("mf" cljr-move-form) ("pf" cljr-promote-function)
+    ("rf" cljr-rename-file-or-dir) ("ad" cljr-add-declaration)
+
+    ("q" nil "quit" :color blue))
+
+  (defhydra hydra-cljr-project (:color pink :hint nil)
+    "
+    Project related refactorings
+    --------------------------------------------------------------------------------------------------------------------------------------
+    _ap_: Add project dependency                       _cs_: Change function signature                    _fu_: Find usages
+    _hd_: Hotload dependency                           _is_: Inline symbol                                _mf_: Move form
+    _pc_: Project clean                                _rf_: Rename file-or-dir _rs_: Rename symbol       _sp_: Sort project dependencies
+    _up_: Update project dependencies
+
+     Cljr related refactorings
+    --------------------------------------------------------------------------------------------------------------------------------------
+    _sc_: Show the project's changelog                 _?_: Describe refactoring
+
+    Available refactoring types
+    -----------------------------------------------------------------------------
+    _n_: Ns related refactorings      _c_: Code related refactorings
+    _p_: Project related refactorings _t_: Top level forms related refactorings
+    _s_: Refactor related functions"
+
+    ("ap" cljr-add-project-dependency) ("cs" cljr-change-function-signature)
+    ("fu" cljr-find-usages) ("hd" cljr-hotload-dependency)
+    ("is" cljr-inline-symbol) ("mf" cljr-move-form)
+    ("pc" cljr-project-clean) ("rf" cljr-rename-file-or-dir)
+    ("rs" cljr-rename-symbol) ("sp" cljr-sort-project-dependencies)
+    ("up" cljr-update-project-dependencies)
+
+    ("sc" cljr-show-changelog) ("?" cljr-describe-refactoring)
+
+    ("n" hydra-cljr-ns-menu/body :exit t)
+    ("c" hydra-cljr-code-menu/body :exit t)
+    ("p" hydra-cljr-project-menu/body :exit t)
+    ("t" hydra-cljr-toplevel-form-menu/body :exit t)
+    ("s" hydra-cljr-cljr-menu/body :exit t)
+
+    ("q" nil "quit" :color blue))
+
+  (defhydra hydra-dired (:hint nil :color pink)
+    "
+     _+_ mkdir          _v_iew           _m_ark             _(_ details        _i_nsert-subdir    wdired
+     _C_opy             _O_ view other   _U_nmark all       _)_ omit-mode      _$_ hide-subdir    C-x C-q : edit
+     _D_elete           _o_pen other     _u_nmark           _l_ redisplay      _w_ kill-subdir    C-c C-c : commit
+     _R_ename           _M_ chmod        _t_oggle           _g_ revert buf     _e_ ediff          C-c ESC : abort
+     _Y_ rel symlink    _G_ chgrp        _E_xtension mark   _s_ort             _=_ pdiff
+     _S_ymlink          ^ ^              _F_ind marked      _._ toggle hydra   \\ flyspell
+     _r_sync            ^ ^              ^ ^                ^ ^                _?_ summary
+     _z_ compress-file  _A_ find regexp
+     _Z_ compress       _Q_ repl regexp
+
+     T - tag prefix"
+
+    ("\\" dired-do-ispell)
+    ("(" dired-hide-details-mode)
+    (")" dired-omit-mode)
+    ("+" dired-create-directory)
+    ("=" diredp-ediff)         ;; smart diff
+    ("?" dired-summary)
+    ("$" diredp-hide-subdir-nomove)
+    ("A" dired-do-find-regexp)
+    ("C" dired-do-copy)        ;; Copy all marked files
+    ("D" dired-do-delete)
+    ("E" dired-mark-extension)
+    ("e" dired-ediff-files)
+    ("F" dired-do-find-marked-files)
+    ("G" dired-do-chgrp)
+    ("g" revert-buffer)        ;; read all directories again (refresh)
+    ("i" dired-maybe-insert-subdir)
+    ("l" dired-do-redisplay)   ;; relist the marked or singel directory
+    ("M" dired-do-chmod)
+    ("m" dired-mark)
+    ("O" dired-display-file)
+    ("o" dired-find-file-other-window)
+    ("Q" dired-do-find-regexp-and-replace)
+    ("R" dired-do-rename)
+    ("r" dired-do-rsynch)
+    ("S" dired-do-symlink)
+    ("s" dired-sort-toggle-or-edit)
+    ("t" dired-toggle-marks)
+    ("U" dired-unmark-all-marks)
+    ("u" dired-unmark)
+    ("v" dired-view-file)      ;; q to exit, s to search, = gets line #
+    ("w" dired-kill-subdir)
+    ("Y" dired-do-relsymlink)
+    ("z" diredp-compress-this-file)
+    ("Z" dired-do-compress)
+    ("q" nil)
+    ("." nil :color blue))
+
+  ;; (global-set-key (kbd "C-M-.") 'smart-parens-navigation/body)
+  ;; (global-set-key (kbd "C-c m n") 'hydra-multiple-cursors-next/body)
+  ;; (global-set-key (kbd "C-c m p") 'hydra-multiple-cursors-previous/body)
+  (global-set-key (kbd "C-M-;") 'hydra-cljr-code/body)
+  (global-set-key (kbd "C-M-=") 'hydra-cljr-project/body)
+  (global-set-key (kbd "C-!") 'hydra-dired/body))
 
 
 
