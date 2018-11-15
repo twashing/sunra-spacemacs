@@ -326,12 +326,114 @@ you should place your code here."
   (setq powerline-default-separator nil)
   ;; (setq powerline-default-separator 'utf-8)
 
-  (global-set-key (kbd "M-m x t s") 'transpose-sexps)
-  (global-set-key (kbd "M-<backspace>") ' sp-backward-kill-word)
   (spacemacs/toggle-highlight-current-line-globally-off)
 
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
+
+
+  ;; General
+  (global-set-key (kbd "M-m x t s") 'transpose-sexps)
+  (global-set-key (kbd "M-<backspace>") ' sp-backward-kill-word)
+  (global-set-key (kbd "C-c C-k") 'eval-buffer)
+  (global-set-key (kbd "C-c M-c") 'upcase-word)
+  (global-set-key (kbd "C-x M-x") 'isearch-forward-symbol-at-point)
+  (global-set-key (kbd "C-x C-g") 'grep-find)
+  (global-set-key (kbd "C-x C-m") 'magit-status)
+  (global-set-key (kbd "M-W") 'whitespace-cleanup)
+
+
+  (global-set-key (kbd "C-\\") 'helm-global-mark-ring)
+
+
+  ;; Clojure
+  (setq clojure-enable-fancify-symbols t)
+
+  ;; :always-align | :always-indent | :align-arguments
+  (setq clojure-indent-style :align-arguments)
+  (setq cider-repl-use-pretty-printing t)
+  (setq cider-prompt-for-symbol nil)
+  (setq nrepl-log-messages t)
+  (setq cider-save-file-on-load t)
+  (setq cider-special-mode-truncate-lines nil)
+  (setq cider-overlays-use-font-lock t)
+
+  (defun cider-repl-bindings ()
+    (define-key cider-repl-mode-map (kbd "M-r") #'sp-raise-sexp))
+  (add-hook 'cider-repl-mode-hook 'cider-repl-bindings)
+  (add-hook 'cider-repl-mode-hook 'command-log-mode)
+  (add-hook 'clojure-mode-hook 'command-log-mode)
+  (add-hook 'emacs-lisp-mode-hook 'command-log-mode)
+
+
+  ;; (eval-after-load 'clojure-mode
+  ;;   '(sayid-setup-package))
+
+
+  (defun unset-undo-tree-bindings ()
+    (define-key undo-tree-map (kbd "C-/") nil)
+    (global-set-key (kbd "C-/") 'avy-goto-char-2))
+  (add-hook 'undo-tree-mode-hook 'unset-undo-tree-bindings)
+
+  (global-set-key (kbd "C-/") 'avy-goto-char-2)
+  (global-set-key (kbd "C-c g c") 'avy-goto-char-2)
+  (global-set-key (kbd "C-c g C") 'avy-goto-char)
+  (global-set-key (kbd "C-c g l") 'avy-goto-line)
+  (global-set-key (kbd "C-c g L") 'avy-goto-char-in-line)
+
+  ;; jump to beginning of some word
+  (global-set-key (kbd "C-c g w") 'avy-goto-word-1)
+  (global-set-key (kbd "C-c g W") 'avy-goto-word-0)
+
+  ;; jump to subword starting with a char
+  (global-set-key (kbd "C-c g s") 'avy-goto-subword-1)
+
+  ;; jump to some subword
+  (global-set-key (kbd "C-c g S") 'avy-goto-subword-0)
+
+
+  ;; Copy line
+  (defun copy-line (&optional arg)
+    "Do a kill-line but copy rather than kill.  This function directly calls
+    kill-line, so see documentation of kill-line for how to use it including prefix
+    argument and relevant variables.  This function works by temporarily making the
+    buffer read-only."
+    (interactive "P")
+    (let ((buffer-read-only t)
+          (kill-read-only-ok t))
+      (kill-line arg)))
+
+  (global-set-key (kbd "C-c k") 'copy-line)
+
+
+  ;; Multiple cursors
+  (global-set-key (kbd "C-c m n l") 'mc/mark-next-lines)
+  (global-set-key (kbd "C-c m n t") 'mc/mark-next-like-this)
+
+  (global-set-key (kbd "C-c m n w") 'mc/mark-next-like-this-word)
+  (global-set-key (kbd "C-c m n W") 'mc/mark-next-word-like-this)
+
+  (global-set-key (kbd "C-c m n s") 'mc/mark-next-like-this-symbol)
+  (global-set-key (kbd "C-c m n S") 'mc/mark-next-symbol-like-this)
+
+  (global-set-key (kbd "C-c s n") 'mc/skip-to-next-like-this)
+  (global-set-key (kbd "C-c s p") 'mc/skip-to-previous-like-this)
+  (global-set-key (kbd "C-c m i n") 'mc/insert-numbers)
+
+  (global-set-key (kbd "C-c m p l") 'mc/mark-previous-lines)
+  ;; (global-set-key (kbd "C-x C-c m n l") 'mc/unmark-next-like-this)
+  ;; (global-set-key (kbd "C-x C-c m p l") 'mc/unmark-previous-like-this)
+  (global-set-key (kbd "C-c m a t") 'mc/mark-all-like-this)
+  (global-set-key (kbd "C-c m a w") 'mc/mark-all-words-like-this)
+  (global-set-key (kbd "C-c m a s") 'mc/mark-all-symbols-like-this)
+  (global-set-key (kbd "C-c m a r") 'mc/mark-all-in-region)
+  (global-set-key (kbd "C-c m a x") 'mc/mark-all-in-region-regexp)
+  (global-set-key (kbd "C-c m a d") 'mc/mark-all-like-this-dwim)
+  (global-set-key (kbd "C-c m a D") 'mc/mark-all-dwim)
+
+  (global-set-key (kbd "C-c m e l") 'mc/edit-lines)
+  (global-set-key (kbd "C-c m e b") 'mc/edit-beginnings-of-lines)
+  (global-set-key (kbd "C-c m e e") 'mc/edit-ends-of-lines)
 
 
   ;; Projectile
@@ -586,10 +688,10 @@ you should place your code here."
     ("12dd37432bb454355047c967db886769a6c60e638839405dad603176e2da366b" default)))
  '(fci-rule-color "#D0BF8F" t)
  '(helm-swoop-speed-or-color t t)
- '(hl-paren-colors (quote ("black" "IndianRed1" "IndianRed3" "IndianRed4")) t)
+ '(hl-paren-colors (quote ("black" "IndianRed1" "IndianRed3" "IndianRed4")))
  '(package-selected-packages
    (quote
-    (sayid visual-regexp-steroids visual-regexp visible-mark treepy graphql sesman back-button ucs-utils smartrep nav-flash persistent-soft list-utils pcache command-log-mode ob-elixir flycheck-mix flycheck-credo alchemist elixir-mode sql-indent swift-mode pdf-tools tablist org-mime winum powerline racket-mode faceup org-category-capture parent-mode projectile flx ghub let-alist smartparens iedit anzu evil goto-chg undo-tree diminish hydra highlight spinner pkg-info epl bind-map bind-key packed f dash s adoc-mode markup-faces helm avy helm-core popup firebelly-theme yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic csv-mode inf-clojure web-beautify unfill reveal-in-osx-finder pbcopy osx-trash osx-dictionary livid-mode skewer-mode simple-httpd launchctl json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc hcl-mode fuzzy async company-tern dash-functional tern coffee-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yaml-mode intero flycheck hlint-refactor hindent helm-hoogle haskell-snippets company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal cmm-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company clojure-snippets auto-yasnippet ac-ispell auto-complete rainbow-mode rainbow-identifiers color-identifiers-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode free-keys ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (crux sayid visual-regexp-steroids visual-regexp visible-mark treepy graphql sesman back-button ucs-utils smartrep nav-flash persistent-soft list-utils pcache command-log-mode ob-elixir flycheck-mix flycheck-credo alchemist elixir-mode sql-indent swift-mode pdf-tools tablist org-mime winum powerline racket-mode faceup org-category-capture parent-mode projectile flx ghub let-alist smartparens iedit anzu evil goto-chg undo-tree diminish hydra highlight spinner pkg-info epl bind-map bind-key packed f dash s adoc-mode markup-faces helm avy helm-core popup firebelly-theme yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic csv-mode inf-clojure web-beautify unfill reveal-in-osx-finder pbcopy osx-trash osx-dictionary livid-mode skewer-mode simple-httpd launchctl json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc hcl-mode fuzzy async company-tern dash-functional tern coffee-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yaml-mode intero flycheck hlint-refactor hindent helm-hoogle haskell-snippets company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal cmm-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company clojure-snippets auto-yasnippet ac-ispell auto-complete rainbow-mode rainbow-identifiers color-identifiers-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode free-keys ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(safe-local-variable-values
    (quote
     ((inf-clojure-project . t)
