@@ -8,9 +8,7 @@
     smartrep
     back-button
     sayid
-    ;; hydra
-    ;; command-log-mode
-    ))
+    command-log-mode))
 
 (defun sunra/init-free-keys ()
   (use-package free-keys
@@ -38,8 +36,11 @@
 
 (defun sunra/init-sayid ()
   (use-package sayid
-               :defer t))
+    :defer t))
 
+(defun sunra/init-command-log-mode ()
+  (use-package command-log-mode
+               :defer t))
 
 
 ;; -> For `bind-key` function
@@ -139,6 +140,10 @@
 (defun cider-repl-bindings ()
   (define-key cider-repl-mode-map (kbd "M-r") #'sp-raise-sexp))
 (add-hook 'cider-repl-mode-hook 'cider-repl-bindings)
+(add-hook 'cider-repl-mode-hook 'command-log-mode)
+(add-hook 'clojure-mode-hook 'command-log-mode)
+(add-hook 'emacs-lisp-mode-hook 'command-log-mode)
+
 
 ;; (eval-after-load 'clojure-mode
 ;;   '(sayid-setup-package))

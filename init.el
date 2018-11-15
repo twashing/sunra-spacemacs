@@ -381,9 +381,9 @@ you should place your code here."
   (global-set-key (kbd "M-r") 'sp-raise-sexp)
 
 
-
-  ;; Hide / Show
+  ;; Miscellaneous
   (global-set-key (kbd "C-o") 'hs-toggle-hiding)
+  (global-set-key (kbd "M-L") 'command-history)
 
 
   (defhydra smart-parens-navigation (global-map "C-M-.")
