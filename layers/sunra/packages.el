@@ -9,7 +9,8 @@
     back-button
     sayid
     command-log-mode
-    crux))
+    crux
+    fancy-narrow))
 
 (defun sunra/init-free-keys ()
   (use-package free-keys
@@ -49,6 +50,10 @@
     :bind (("C-x M-o" . crux-smart-open-line-above)
            ("C-x C-o" . crux-smart-open-line)
            ("C-'" . crux-kill-whole-line))))
+
+(defun sunra/init-fancy-narrow ()
+  (use-package fancy-narrow
+    :ensure t))
 
 
 ;; -> For `bind-key` function
