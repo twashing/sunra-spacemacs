@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(ruby
+     typescript
      elixir
      octave
      ;; pdf-tools
@@ -327,7 +328,10 @@ you should place your code here."
   (setq powerline-default-separator nil)
   ;; (setq powerline-default-separator 'utf-8)
 
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+
   (spacemacs/toggle-highlight-current-line-globally-off)
+
 
   (setq-default js2-basic-offset 2)
   (setq-default js-indent-level 2)
@@ -375,6 +379,7 @@ you should place your code here."
   ;; https://codehopper.nl/2018/05/28/a-tale-of-emacs-clojure-and-pinned-packages/
   (setq package-archives
         '(("gnu" . "https://elpa.gnu.org/packages/")
+          ("marmalade" . "https://marmalade-repo.org/packages/")
           ("melpa" . "https://stable.melpa.org/packages/")
           ("melpa-unstable" . "https://melpa.org/packages/")))
 
@@ -384,6 +389,10 @@ you should place your code here."
           ("melpa-unstable" . 0)))
 
   (add-to-list 'package-pinned-packages '(clj-refactor . "melpa-unstable") t)
+
+
+  ;; Ruby
+  (setq ruby-insert-encoding-magic-comment nil)
 
 
   (defun unset-undo-tree-bindings ()
@@ -700,21 +709,18 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(cider-boot-parameters "dev")
  '(custom-safe-themes
-   (quote
-    ("12dd37432bb454355047c967db886769a6c60e638839405dad603176e2da366b" default)))
+   '("12dd37432bb454355047c967db886769a6c60e638839405dad603176e2da366b" default))
  '(fci-rule-color "#D0BF8F" t)
  '(helm-swoop-speed-or-color t t)
- '(hl-paren-colors (quote ("black" "IndianRed1" "IndianRed3" "IndianRed4")) t)
+ '(hl-paren-colors '("black" "IndianRed1" "IndianRed3" "IndianRed4") t)
  '(package-selected-packages
-   (quote
-    (rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby fancy-narrow crux sayid visual-regexp-steroids visual-regexp visible-mark treepy graphql sesman back-button ucs-utils smartrep nav-flash persistent-soft list-utils pcache command-log-mode ob-elixir flycheck-mix flycheck-credo alchemist elixir-mode sql-indent swift-mode pdf-tools tablist org-mime winum powerline racket-mode faceup org-category-capture parent-mode projectile flx ghub let-alist smartparens iedit anzu evil goto-chg undo-tree diminish hydra highlight spinner pkg-info epl bind-map bind-key packed f dash s adoc-mode markup-faces helm avy helm-core popup firebelly-theme yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic csv-mode inf-clojure web-beautify unfill reveal-in-osx-finder pbcopy osx-trash osx-dictionary livid-mode skewer-mode simple-httpd launchctl json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc hcl-mode fuzzy async company-tern dash-functional tern coffee-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yaml-mode intero flycheck hlint-refactor hindent helm-hoogle haskell-snippets company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal cmm-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company clojure-snippets auto-yasnippet ac-ispell auto-complete rainbow-mode rainbow-identifiers color-identifiers-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode free-keys ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(magit-section tide typescript-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby fancy-narrow crux sayid visual-regexp-steroids visual-regexp visible-mark treepy graphql sesman back-button ucs-utils smartrep nav-flash persistent-soft list-utils pcache command-log-mode ob-elixir flycheck-mix flycheck-credo alchemist elixir-mode sql-indent swift-mode pdf-tools tablist org-mime winum powerline racket-mode faceup org-category-capture parent-mode projectile flx ghub let-alist smartparens iedit anzu evil goto-chg undo-tree diminish hydra highlight spinner pkg-info epl bind-map bind-key packed f dash s adoc-mode markup-faces helm avy helm-core popup firebelly-theme yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic csv-mode inf-clojure web-beautify unfill reveal-in-osx-finder pbcopy osx-trash osx-dictionary livid-mode skewer-mode simple-httpd launchctl json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc hcl-mode fuzzy async company-tern dash-functional tern coffee-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yaml-mode intero flycheck hlint-refactor hindent helm-hoogle haskell-snippets company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal cmm-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company clojure-snippets auto-yasnippet ac-ispell auto-complete rainbow-mode rainbow-identifiers color-identifiers-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode free-keys ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
  '(safe-local-variable-values
-   (quote
-    ((inf-clojure-project . t)
+   '((inf-clojure-project . t)
      (cider-boot-parameters . "start")
      (checkdoc-minor-mode . t)
-     (mangle-whitespace . t))))
- '(spacemacs-theme-comment-bg nil t))
+     (mangle-whitespace . t)))
+ '(spacemacs-theme-comment-bg nil))
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
@@ -747,4 +753,4 @@ This function is called at the very end of Spacemacs initialization."
  '(helm-selection ((t (:background "gray11" :distant-foreground "dark orange"))))
  '(mode-line ((t (:background "#292929" :foreground "#888888" :box nil :height 1.15))))
  '(mode-line-inactive ((t (:background "#292929" :foreground "#555555" :box nil :height 1.15))))
- '(spacemacs-emacs-face ((t (:background "DarkGoldenrod2" :foreground "#3E3D31" :inherit (quote mode-line))))))
+ '(spacemacs-emacs-face ((t (:background "DarkGoldenrod2" :foreground "#3E3D31" :inherit 'mode-line)))))
