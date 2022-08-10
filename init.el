@@ -30,24 +30,24 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(ruby
-     typescript
-     elixir
+   '(;; ruby
+     ;; typescript
+     ;; elixir
      octave
      ;; pdf-tools
      sql
-     swift
+     ;; swift
      asciidoc
      python
      csv
-     racket
+     ;; racket
      html
      yaml
      clojure
      java
      javascript
      auto-completion
-     (haskell :variables haskell-completion-backend 'intero)
+     ;; (haskell :variables haskell-completion-backend 'intero)
 
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -59,6 +59,7 @@ values."
      emacs-lisp
      git
      markdown
+     multiple-cursors
      org
      (shell :variables
             shell-default-height 30
@@ -371,8 +372,8 @@ you should place your code here."
   (add-hook 'emacs-lisp-mode-hook 'command-log-mode)
 
 
-  (eval-after-load 'clojure-mode
-    '(sayid-setup-package))
+  ;; (eval-after-load 'clojure-mode
+  ;;   '(sayid-setup-package))
 
 
   ;; Trying to pin emacs packages
@@ -380,13 +381,14 @@ you should place your code here."
   (setq package-archives
         '(("gnu" . "https://elpa.gnu.org/packages/")
           ("marmalade" . "https://marmalade-repo.org/packages/")
-          ("melpa" . "https://stable.melpa.org/packages/")
+          ;; ("melpa" . "https://stable.melpa.org/packages/")
           ("melpa-unstable" . "https://melpa.org/packages/")))
 
   (setq package-archive-priorities
-        '(("melpa" . 50)
+        '(;; ("melpa" . 60)
+          ("melpa-unstable" . 50)
           ("gnu" . 10)
-          ("melpa-unstable" . 0)))
+          ("marmalade" . 10)))
 
   (add-to-list 'package-pinned-packages '(clj-refactor . "melpa-unstable") t)
 
@@ -733,16 +735,32 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cider-boot-parameters "dev")
+ '(custom-safe-themes
+   '("12dd37432bb454355047c967db886769a6c60e638839405dad603176e2da366b" default))
+ '(fci-rule-color "#D0BF8F" t)
+ '(helm-swoop-speed-or-color t)
+ '(hl-paren-colors '("black" "IndianRed1" "IndianRed3" "IndianRed4"))
  '(package-selected-packages
-   (quote
-    (overseer nameless mvn maven-test-mode groovy-mode groovy-imports pcache clojure-cheatsheet yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic csv-mode inf-clojure web-beautify unfill reveal-in-osx-finder pbcopy osx-trash osx-dictionary livid-mode skewer-mode simple-httpd launchctl json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc hcl-mode fuzzy async company-tern dash-functional tern coffee-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yaml-mode intero flycheck hlint-refactor hindent helm-hoogle haskell-snippets company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal cmm-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company clojure-snippets auto-yasnippet ac-ispell auto-complete rainbow-mode rainbow-identifiers color-identifiers-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode free-keys ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+   '(crux sayid overseer nameless mvn maven-test-mode groovy-mode groovy-imports pcache clojure-cheatsheet yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic csv-mode inf-clojure web-beautify unfill reveal-in-osx-finder pbcopy osx-trash osx-dictionary livid-mode skewer-mode simple-httpd launchctl json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc hcl-mode fuzzy async company-tern dash-functional tern coffee-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data yaml-mode intero flycheck hlint-refactor hindent helm-hoogle haskell-snippets company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal cmm-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company clojure-snippets auto-yasnippet ac-ispell auto-complete rainbow-mode rainbow-identifiers color-identifiers-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode free-keys ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
  '(safe-local-variable-values
-   (quote
-    ((inf-clojure-project . t)
+   '((inf-clojure-project . t)
      (cider-boot-parameters . "start")
      (checkdoc-minor-mode . t)
-     (mangle-whitespace . t))))
- '(spacemacs-theme-comment-bg nil)))
+     (mangle-whitespace . t)))
+ '(spacemacs-theme-comment-bg nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background "#222222" :foreground "#999999"))))
+ '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0))))
+ '(helm-selection ((t (:background "gray11" :distant-foreground "dark orange"))))
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t)
+ '(mode-line ((t (:background "#292929" :foreground "#888888" :box nil :height 1.15))))
+ '(mode-line-inactive ((t (:background "#292929" :foreground "#555555" :box nil :height 1.15))))
+ '(spacemacs-emacs-face ((t (:background "DarkGoldenrod2" :foreground "#3E3D31" :inherit 'mode-line)))))
+)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

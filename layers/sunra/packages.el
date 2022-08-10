@@ -7,7 +7,7 @@
     visible-mark
     smartrep
     back-button
-    sayid
+    ;; sayid
     command-log-mode
     crux
     fancy-narrow))
@@ -36,20 +36,26 @@
   (use-package visible-mark
                :defer t))
 
-(defun sunra/init-sayid ()
-  (use-package sayid
-    :defer t))
+;; (defun sunra/init-sayid ()
+;;   (use-package sayid
+;;     :defer t))
 
 (defun sunra/init-command-log-mode ()
   (use-package command-log-mode
     :defer t))
 
 (defun sunra/init-crux-mode ()
+
+  ;; (unless (package-installed-p 'crux)
+  ;;   (package-refresh-contents)
+  ;;   (package-install 'crux))
+
   (use-package crux
     :ensure t
     :bind (("C-x M-o" . crux-smart-open-line-above)
            ("C-x C-o" . crux-smart-open-line)
-           ("C-'" . crux-kill-whole-line))))
+           ("C-'" . crux-kill-whole-line)))
+  )
 
 (defun sunra/init-fancy-narrow ()
   (use-package fancy-narrow
